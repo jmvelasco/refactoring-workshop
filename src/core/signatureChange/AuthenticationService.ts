@@ -4,7 +4,19 @@
  */
 
 export class AuthenticationService {
-	isAuthenticated(id: number): boolean {
-		return id == 12345;
+	isAuthenticated(id: Id): boolean {
+		return id.isEqual(12345);
+	}
+}
+
+export class Id {
+	constructor(private readonly value: number) {}
+
+	static create(value: number) {
+		return new Id(value);
+	}
+
+	isEqual(value: number) {
+		return this.value === value;
 	}
 }

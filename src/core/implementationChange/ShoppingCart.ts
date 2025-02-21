@@ -10,21 +10,44 @@
  */
 
 export class ShoppingCart {
-	private price: number;
+	private priceList: Price[] = [];
 
-	add(price: number) {
-		this.price = price;
+	add(price: Price) {
+		this.priceList.push(price);
 	}
 
-	calculateTotalPrice(): number {
-		return this.price;
+	calculateTotalPrice(): Price {
+		return this.priceList.reduce((acc, curr) => acc.add(curr), Price.create(0));
 	}
 
 	hasDiscount(): boolean {
-		return this.price >= 100;
+		return this.calculateTotalPrice().isGreaterOrEqual(Price.create(100));
 	}
 
 	numberOfProducts(): number {
-		return 1;
+		return this.priceList.length;
+	}
+}
+
+export class Price {
+	private constructor(private readonly value: number) {}
+
+	static create(value: number) {
+		if (value < 0) {
+			throw new Error('Negative values are not allowed!');
+		}
+		return new Price(value);
+	}
+
+	add(price: Price) {
+		return Price.create(this.value + price.value);
+	}
+
+	isEquals(price: Price) {
+		return this.value === price.value;
+	}
+
+	isGreaterOrEqual(price: Price) {
+		return this.value >= price.value;
 	}
 }
