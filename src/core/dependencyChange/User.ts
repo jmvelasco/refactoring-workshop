@@ -1,7 +1,7 @@
 export class User {
-  profile: string[];
+	profile: string[];
 
-  constructor () {
-    this.profile = [];
-  }
+	constructor() {
+		this.profile = [];
+	}
 }

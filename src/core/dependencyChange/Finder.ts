@@ -1,14 +1,14 @@
-import { UserRepository } from "./UserRepository";
-import { User } from "./User";
+import { UserRepository } from './UserRepository';
+import { User } from './User';
 
 export class Finder {
-  repository: UserRepository;
+	repository: UserRepository;
 
-  constructor (repository: UserRepository) {
-    this.repository = repository;
-  }
+	constructor(repository: UserRepository) {
+		this.repository = repository;
+	}
 
-  find(query: string): User[] {
-    return this.repository.findAll().filter(u => (u.profile.length == 0 || u.profile.includes(query)));
-  }
+	find(query: string): User[] {
+		return this.repository.findAll().filter((u) => u.profile.length == 0 || u.profile.includes(query));
+	}
 }

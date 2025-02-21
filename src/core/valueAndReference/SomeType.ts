@@ -8,17 +8,17 @@ export class SomeType {
 	}
 
 	firstMethod(arg1: string) {
-		arg1 = "foo";
+		arg1 = 'foo';
 	}
 
 	secondMethod(other: SomeType) {
 		other = new SomeType();
-		other.someField = "blah";
+		other.someField = 'blah';
 	}
 
 	thirdMethod(other: SomeType) {
 		other.numbers[0] = 100;
-		other.someField = "changed";
+		other.someField = 'changed';
 		other.child = new SomeType();
 	}
 
